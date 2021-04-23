@@ -11,7 +11,7 @@
 * JavaScript
 * HTML
 * CSS
-<br>
+
 ---
 
 ## Functionality
@@ -21,6 +21,7 @@ This Budget Tracker is a <strong>Progressive Web Application</strong> that utili
 ![Budget Tracker](assets/BudgetGif.gif)<br><br>
 ---
 <br>
+
 ## Deployment
 
 Use the <a href="https://budget-my-budget.herokuapp.com/">Budget Tracker</a> yourself!
