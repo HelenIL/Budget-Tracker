@@ -9,18 +9,20 @@ const FILES_TO_CACHE = [
     "/icons/icon-512x512.png"
 ];
 
-const CACHE_NAME = 'static-cache-v3';
-const DATA_CACHE_NAME = 'data-cache-v3';
+const CACHE_NAME = 'static-cache-v2';
+const DATA_CACHE_NAME = 'data-cache-v1';
 
-self.addEventListener('install', function(evt) {
+self.addEventListener('install', evt => {
     evt.waitUntil(
-        caches.open(CACHE_NAME).then((cache) => 
-        cache.addAll(FILES_TO_CACHE))
+        caches.open(CACHE_NAME).then(cache => {
+        console.log("Offline pre-cached successfully!");
+        return cache.addAll(FILES_TO_CACHE);
+        })
     );
     self.skipWaiting();
 });
 
-self.addEventListener("activate", function (evt) {
+self.addEventListener('activate', evt => {
     evt.waitUntil(
         caches.keys().then(keyList => {
             return Promise.all(
@@ -37,7 +39,7 @@ self.addEventListener("activate", function (evt) {
     self.clients.claim();
 });
 
-self.addEventListener('fetch', function (evt) {
+self.addEventListener('fetch', evt => {
     if (evt.request.url.includes('/api/')) {
         console.log("evt.request.url", evt.request.url)
         evt.respondWith(
